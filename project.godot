@@ -11,8 +11,12 @@ config_version=5
 [application]
 
 config/name="TouchInterfacePlugin"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/toucheditor/plugin.cfg", "res://addons/zylann.editor_debugger/plugin.cfg")
 
 [rendering]
 
