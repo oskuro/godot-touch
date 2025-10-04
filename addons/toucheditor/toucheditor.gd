@@ -3,8 +3,14 @@ extends EditorPlugin
 var uielements = []
 
 var base = get_editor_interface().get_base_control()
+const TOUCH_DOCK = preload("res://addons/toucheditor/touch_dock.tscn")
+var dock
 
 func _enter_tree() -> void:
+	# Adding touch dock
+	dock = TOUCH_DOCK.instantiate()
+	add_control_to_bottom_panel(dock, "Touch Dock")
+	
 	#Navigation Bar
 	#uielements.append(base.get_node("@VBoxContainer@15/@EditorTitleBar@16/@HBoxContainer@4943"))
 	#Run Menu Bar
@@ -12,16 +18,14 @@ func _enter_tree() -> void:
 
 	# Right hand dock	
 	uielements.append(base.get_node("@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockVSplitLeftR"))
-	
 	uielements.append(base.get_node("@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockVSplitLeftR/DockSlotLeftUR"))
 	uielements.append(base.get_node("@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockVSplitLeftR/DockSlotLeftBR"))
 	
 	# Tab thingy above main dock
 	uielements.append(base.get_node("@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@62/@VBoxContainer@63/@EditorSceneTabs@78"))
 	
-	
 	# Bottom dock with output / Debugger
-	uielements.append(base.get_node("@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@EditorBottomPanel@7324"))
+	#uielements.append(base.get_node("@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@EditorBottomPanel@7324"))
 	
 	
 	# Hide ui elements
@@ -45,3 +49,5 @@ func _exit_tree() -> void:
 				element.set_collapsed(false)
 			else:
 				element.visible = true
+
+	remove_control_from_bottom_panel(dock)
